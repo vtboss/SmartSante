@@ -1,0 +1,134 @@
+/* Core Styling */
+body {
+    font-family: 'Oswald', sans-serif;
+    margin: 0;
+    background-color: #696cff;
+  }
+  
+  h1, h2 {
+    color: #233446;
+    text-align: center;
+  }
+  .navbar {
+    display: flex;                /* Use flexbox for layout */
+    justify-content: center;      /* Center items horizontally */
+    align-items: center;          /* Center items vertically */
+    height: 90px;                 /* Set a height for the navbar */
+    background-color: #040051;   /* Optional: background color */
+  }
+  .logo {
+    max-width: 150px;            /* Set a maximum width for the logo */
+    height: auto;                 /* Maintain aspect ratio */
+    display: block;               /* Make the image a block element */
+    margin: 0 auto;              /* Center the logo horizontally */
+  }
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  
+  .btn-primary, .btn-secondary {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: #696cff;
+  }
+  
+  .btn-secondary {
+    background-color: #03c3ec;
+  }
+  
+  /* Hero Section */
+  .hero {
+    background-color: #696cff;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+  
+  .hero h2 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1.2rem;
+  }
+  
+  /* Vendor Tools Section */
+  .section {
+    padding: 2rem 1rem;
+  }
+  
+  .vendor-tools {
+    background-color: #e1e2ff;
+  }
+  
+  .tool-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .tool-card {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* User Features Section */
+  .user-features {
+    background-color: #03c3ec;
+    color: white;
+  }
+  
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .feature-card {
+    background-color: #233446;
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #233446;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h2 {
+      font-size: 1.5rem;
+    }
+  
+    .hero p {
+      font-size: 1rem;
+    }
+  
+    .btn-primary, .btn-secondary {
+      width: 100%;
+      margin: 0.5rem 0;
+    }
+  }
+  
