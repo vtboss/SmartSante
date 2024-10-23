@@ -34,6 +34,7 @@ body {
   }
   
   .btn-primary, .btn-secondary {
+    width: 20%;
     display: inline-block;
     padding: 0.5rem 1rem;
     margin: 0.5rem;
@@ -42,7 +43,7 @@ body {
   }
   
   .btn-primary {
-    background-color: #696cff;
+    background-color: orange;
   }
   
   .btn-secondary {
@@ -71,7 +72,8 @@ body {
   }
   
   .vendor-tools {
-    background-color: #e1e2ff;
+    background: url(./Online_Shoping_13.jpg) no-repeat center;
+    background-size: cover;
   }
   
   .tool-grid {
@@ -87,6 +89,7 @@ body {
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
+  
   
   /* User Features Section */
   .user-features {
@@ -127,7 +130,7 @@ body {
     }
   
     .btn-primary, .btn-secondary {
-      width: 100%;
+      width: 50%;
       margin: 0.5rem 0;
     }
   }
