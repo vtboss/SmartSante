@@ -59,17 +59,6 @@ if (isset($_POST["submit"])) {
     <div style="color: red;"><?php echo $error_message; ?></div>
 <?php endif; ?>
 
-<!-- HTML Form -->
-<form id="myForm" method="post" enctype="multipart/form-data">
-    <input type="text" name="Firstname" placeholder="First Name" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <input type="password" id="Password" name="Password" placeholder="Password" required>
-    <input type="password" id="CPassword" name="CPassword" placeholder="Confirm Password" required>
-    <input type="text" name="Phone" placeholder="Phone Number" required>
-    <input type="submit" name="submit" value="Submit">
-    <span id="error-msg" style="color:red; display:none;">Passwords do not match</span>
-</form>
-
 <script>
     document.getElementById("myForm").addEventListener("submit", function(event) {
     // Get the password and confirm password values
