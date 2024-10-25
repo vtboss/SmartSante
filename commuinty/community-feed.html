@@ -10,6 +10,35 @@
       margin: 0;
       background-color: #f5f5f9;
     }
+    /* Sidebar for desktop */
+    .sidebar {
+      width: 15%;
+      background-color: #233446;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      transform: translateX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Sidebar link styling */
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin: 0.5rem 0;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #34495e;
+    }
 
     .container {
       max-width: 800px;
@@ -114,11 +143,36 @@
       padding-left: 1rem;
       border-left: 2px solid #696cff;
     }
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 1rem;
+        font-size: smaller;
+      }
+
+      .sidebar-mobile-button {
+        display: block;
+      }
+    }
   </style>
 </head>
 <body>
+      <!-- Sidebar -->
+  <button class="sidebar-mobile-button" onclick="toggleSidebar()">☰ Menu</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Community Pages</h2>
+    <a href="community-directory.html">All Communities</a>
+    <a href="community-feed.html">Community Feed</a>
+    <a href="top-contributors.html">Top Contributors</a>
+  </div>
   <div class="container">
     <h1>Community Feed</h1>
+    
 
     <!-- Create Post Form -->
     <div class="post-form">
