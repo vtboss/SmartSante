@@ -20,15 +20,17 @@ if (isset($_POST["submit"])) {
     $Password = $_POST['Password'];
     $CPassword = $_POST['CPassword'];
     $Phone_Number = $_POST['Phone'];
+    $Category= $_POST['Category'];
 
-    
+    $random_number = 'RE' . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT);
+
 
         if (isset($_FILES['aadhaar']) && $_FILES['aadhaar']['error'] === UPLOAD_ERR_OK) {
             // Get the binary data of the uploaded file
             $aadhaar_image = file_get_contents($_FILES['aadhaar']['tmp_name']);
 
             // Prepare SQL statement to insert data
-            $sql = "INSERT INTO `vendors_ca_db` (`name`, `email`, `password`, `phone_number`, `aadhaar`) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `vendors_ca_db` (`RID`,`Category`,`name`, `email`, `password`, `phone_number`, `aadhaar`) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
             // Prepare and bind
             $stmt = $con->prepare($sql);
@@ -40,12 +42,13 @@ if (isset($_POST["submit"])) {
             $hashed_password = password_hash($Password, PASSWORD_DEFAULT);
 
             // Bind parameters (note that aadhaar_image is included here)
-            $stmt->bind_param("sssss", $firstname, $email, $hashed_password, $Phone_Number, $aadhaar_image);
+            $stmt->bind_param("sssssss",$random_number,$Category, $firstname, $email, $hashed_password, $Phone_Number, $aadhaar_image);
 
             // Execute statement
             if ($stmt->execute()) {
                 $new_id = $stmt->insert_id; // Get the ID of the last inserted record
-                #echo "Image and data uploaded successfully. New record ID is: " . $new_id;
+                #echo "data uploaded successfully. New record ID is: " . $new_id;
+                header("Location:/SmartSante-main/db.html"); 
             } else {
                 $error_message = "Error: " . $stmt->error; // Store error message
             }
@@ -53,7 +56,8 @@ if (isset($_POST["submit"])) {
             // Close statement
             $stmt->close();
         } else {
-            $error_message = "Error uploading image. Please try again.";
+            $error_message = "Error uploading image. Plea
+            se try again.";
         }
 
 
@@ -66,17 +70,6 @@ if (isset($_POST["submit"])) {
     <div style="color: red;"><?php echo $error_message; ?></div>
 <?php endif; ?>
 
-<!-- HTML Form -->
-<form id="myForm" method="post" enctype="multipart/form-data">
-    <input type="text" name="Firstname" placeholder="First Name" required>
-    <input type="email" name="Email" placeholder="Email" required>
-    <input type="password" id="Password" name="Password" placeholder="Password" required>
-    <input type="password" id="CPassword" name="CPassword" placeholder="Confirm Password" required>
-    <input type="text" name="Phone" placeholder="Phone Number" required>
-    <input type="file" name="aadhaar" accept="image/*" required>
-    <input type="submit" name="submit" value="Submit">
-    <span id="error-msg" style="color:red; display:none;">Passwords do not match</span>
-</form>
 
 <script>
     document.getElementById("myForm").addEventListener("submit", function(event) {
