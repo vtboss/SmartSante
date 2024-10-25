@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Management System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      padding: 40px 20px;
+      text-align: center;
+      background: linear-gradient(to right, #2193b0, #6dd5ed);
+      color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      opacity: 0.9;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      margin: 30px auto;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      width: 85%;
+      max-width: 1200px;
+    }
+
+    .map-container {
+      margin-top: 25px;
+      position: relative;
+      width: 100%;
+      height: 600px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .map-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .vendor-list {
+      margin-top: 30px;
+      padding: 20px;
+      background: #f8f9fa;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .vendor-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .vendor-category {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .category-title {
+      color: #2193b0;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .vendor-item {
+      padding: 15px;
+      margin: 10px 0;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+
+    .vendor-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .vendor-name {
+      color: #2193b0;
+      font-weight: 600;
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .vendor-details {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    .vendor-rating {
+      color: #ffd700;
+      margin-top: 5px;
+    }
+
+    .section-title {
+      color: #2193b0;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .section-icon {
+      font-size: 2.2rem;
+      color: #2193b0;
+    }
+
+    .vendor-list::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .vendor-list::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 10px;
+    }
+
+    .vendor-list::-webkit-scrollbar-thumb {
+      background: #2193b0;
+      border-radius: 10px;
+    }
+
+    .vendor-list::-webkit-scrollbar-thumb:hover {
+      background: #1a7a8c;
+    }
+
+    .sub-vendors {
+      display: none;
+      margin-top: 10px;
+      padding-left: 20px;
+      border-left: 2px solid #2193b0;
+    }
+
+    .sub-vendors.active {
+      display: block;
+    }
+
+    .sub-vendor-item {
+      padding: 8px;
+      margin: 5px 0;
+      background: #f8f9fa;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Vendor Management System</h1>
+    <p>Discover and Connect with Local Vendors in Mysuru</p>
+  </header>
+
+  <section id="map-section" class="card">
+    <h2 class="section-title">
+      <i class="fas fa-map-marked-alt section-icon"></i>
+      Vendor Locations in Mysuru
+    </h2>
+    
+    <div class="map-container">
+      <iframe 
+        id="map-frame"
+        class="map-frame"
+        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d31305.96936810736!2d76.63773163955077!3d12.295738099999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1svendors%20mysore!5e0!3m2!1sen!2sin!4v1698064800185!5m2!1sen!2sin"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <div class="vendor-list">
+      <h3>Popular Vendor Locations</h3>
+      <div class="vendor-categories">
+        <div class="vendor-category">
+          <h4 class="category-title">
+            <i class="fas fa-store"></i>
+            Traditional Markets
+          </h4>
+          <div class="vendor-item" data-location="12.3052,76.6552" data-place="Devaraja Market, Mysuru">
+            <span class="vendor-name">Devaraja Market</span>
+            <p class="vendor-details">Fresh produce, spices, and traditional items</p>
+            <div class="vendor-rating">★★★★★</div>
+            <div class="sub-vendors">
+              <div class="sub-vendor-item">Krishna Spices - Traditional Spices & Masalas</div>
+              <div class="sub-vendor-item">Geetha Fruits - Fresh Local & Imported Fruits</div>
+              <div class="sub-vendor-item">Maharaja Vegetables - Organic Produce</div>
+              <div class="sub-vendor-item">Royal Flowers - Fresh Flowers & Garlands</div>
+              <div class="sub-vendor-item">Mysore Essentials - Traditional Items</div>
+            </div>
+          </div>
+          <div class="vendor-item" data-location="12.3125,76.6503" data-place="Bannimantap Market, Mysuru">
+            <span class="vendor-name">Bannimantap Market</span>
+            <p class="vendor-details">Wholesale vegetables and fruits</p>
+            <div class="vendor-rating">★★★★☆</div>
+            <div class="sub-vendors">
+              <div class="sub-vendor-item">Farmers Fresh - Direct Farm Produce</div>
+              <div class="sub-vendor-item">Green Valley - Wholesale Vegetables</div>
+              <div class="sub-vendor-item">Fresh Express - Fruits Wholesale</div>
+              <div class="sub-vendor-item">Nature's Best - Organic Section</div>
+            </div>
+          </div>
+          <div class="vendor-item" data-location="12.3148,76.6420" data-place="Mandi Market, Mysuru">
+            <span class="vendor-name">Mandi Market</span>
+            <p class="vendor-details">Bulk groceries and food items</p>
+            <div class="vendor-rating">★★★★☆</div>
+            <div class="sub-vendors">
+              <div class="sub-vendor-item">Bulk Bazaar - Wholesale Groceries</div>
+              <div class="sub-vendor-item">Grain Masters - Rice & Pulses</div>
+              <div class="sub-vendor-item">Spice World - Bulk Spices</div>
+              <div class="sub-vendor-item">Oil Merchants - Cooking Oils</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vendor-category">
+          <h4 class="category-title">
+            <i class="fas fa-tshirt"></i>
+            Textile & Clothing
+          </h4>
+          <div class="vendor-item" data-location="12.3075,76.6527" data-place="Sayyaji Rao Road, Mysuru">
+            <span class="vendor-name">Sayyaji Rao Road Textile Hub</span>
+            <p class="vendor-details">Traditional and modern textiles</p>
+            <div class="vendor-rating">★★★★★</div>
+            <div class="sub-vendors">
+              <div class="sub-vendor-item">Mysore Silks - Traditional Sarees</div>
+              <div class="sub-vendor-item">Modern Fabrics - Contemporary Clothing</div>
+              <div class="sub-vendor-item">Royal Textiles - Premium Fabrics</div>
+              <div class="sub-vendor-item">Fashion Point - Designer Wear</div>
+            </div>
+          </div>
+          
+          <!-- Additional Textile Vendors -->
+          <div class="vendor-item" data-location="12.3152,76.6647" data-place="Ashoka Road, Mysuru">
+            <span class="vendor-name">Ashoka Road Textile Lane</span>
+            <p class="vendor-details">Wholesale Clothing and Sarees</p>
+            <div class="vendor-rating">★★★★☆</div>
+            <div class="sub-vendors">
+              <div class="sub-vendor-item">Saree Bazaar - Traditional Sarees</div>
+              <div class="sub-vendor-item">Global Textiles - Fabric Store</div>
+              <div class="sub-vendor-item">City Fabrics - Cotton Wear</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- More Vendors -->
+        <div class="vendor-category">
+          <h4 class="category-title">
+            <i class="fas fa-utensils"></i>
+            Food & Beverages
+          </h4>
+          <div class="vendor-item" data-location="12.3210,76.6325" data-place="Mysuru Food Street">
+            <span class="vendor-name">Mysuru Food Street</span>
+            <p class="vendor-details">Street food and local delicacies</p>
+            <div class="vendor-rating">★★★★★</div>
+            <div class="sub-vendors">
+              <div class="sub-vendor-item">Vijay Snacks - Mysore Pak & Snacks</div>
+              <div class="sub-vendor-item">Royal Bakery - Cakes & Pastries</div>
+              <div class="sub-vendor-item">Street Bites - Local Chaat & Dosa</div>
+              <div class="sub-vendor-item">Mysore Delight - Traditional Sweets</div>
+            </div>
+          </div>
+          <div class="vendor-item" data-location="12.3199,76.6415" data-place="Chamundi Hill Food Court">
+            <span class="vendor-name">Chamundi Hill Food Court</span>
+            <p class="vendor-details">Popular food court on the hill</p>
+            <div class="vendor-rating">★★★★☆</div>
+            <div class="sub-vendors">
+              <div class="sub-vendor-item">Hilltop Diner - Local Snacks</div>
+              <div class="sub-vendor-item">Mountain Bakery - Fresh Breads</div>
+              <div class="sub-vendor-item">Hillview Sweets - South Indian Sweets</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const mapFrame = document.getElementById('map-frame');
+      const vendorItems = document.querySelectorAll('.vendor-item');
+
+      vendorItems.forEach(item => {
+        item.addEventListener('click', function() {
+          // Update map location
+          const location = this.dataset.location;
+          const place = this.dataset.place;
+          if (location && place) {
+            const newSrc = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1000!2d${location.split(',')[1]}!3d${location.split(',')[0]}!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf70381d572ef9%3A0x4cb5785c523bc5a8!2s${encodeURIComponent(place)}!5e0!3m2!1sen!2sin!4v1698064800185!5m2!1sen!2sin`;
+            mapFrame.src = newSrc;
+          }
+
+          // Toggle sub-vendors
+          const subVendors = this.querySelector('.sub-vendors');
+          document.querySelectorAll('.sub-vendors').forEach(sv => {
+            if (sv !== subVendors) {
+              sv.classList.remove('active');
+            }
+          });
+          subVendors.classList.toggle('active');
+
+          // Animation effect
+          item.style.transform = 'scale(1.02)';
+          setTimeout(() => {
+            item.style.transform = 'scale(1)';
+          }, 200);
+        });
+      });
+    });
+  </script>
+</body>
+</html>

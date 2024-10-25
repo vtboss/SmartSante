@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Feed</title>
+  <style>
+    body {
+      font-family: 'Oswald', sans-serif;
+      margin: 0;
+      background-color: #f5f5f9;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #233446;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .post-form {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .post-form textarea {
+      width: 100%;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: 1px solid #d9dee3;
+      margin-bottom: 1rem;
+    }
+
+    .btn-post {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #696cff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn-post:hover {
+      background-color: #5f61e6;
+    }
+
+    .post-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .post-item {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-item h3 {
+      color: #233446;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    .post-item p {
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+
+    .post-actions {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn-like,
+    .btn-comment {
+      background-color: #e1e2ff;
+      padding: 0.5rem;
+      font-size: 0.9rem;
+      color: #696cff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-like:hover,
+    .btn-comment:hover {
+      background-color: #d1d3f5;
+    }
+
+    .comment-section {
+      margin-top: 1rem;
+      border-top: 1px solid #d9dee3;
+      padding-top: 1rem;
+    }
+
+    .comment-item {
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+      padding-left: 1rem;
+      border-left: 2px solid #696cff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Community Feed</h1>
+
+    <!-- Create Post Form -->
+    <div class="post-form">
+      <textarea id="postContent" rows="3" placeholder="Share something with the community..."></textarea>
+      <button class="btn-post" onclick="addPost()">Post</button>
+    </div>
+
+    <!-- Post List -->
+    <div class="post-list" id="postList">
+      <!-- Example post item -->
+      <div class="post-item">
+        <h3>Vendor Name</h3>
+        <p>Here's an example post within the community. Engage and share your thoughts!</p>
+        <div class="post-actions">
+          <button class="btn-like" onclick="likePost(this)">Like (<span class="like-count">0</span>)</button>
+          <button class="btn-comment" onclick="toggleCommentSection(this)">Comment</button>
+        </div>
+        <!-- Comment Section -->
+        <div class="comment-section" style="display: none;">
+          <input type="text" class="comment-input" placeholder="Write a comment..." onkeypress="addComment(event, this)">
+          <div class="comment-list">
+            <!-- Comments will be added here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const postList = document.getElementById('postList');
+
+    // Function to add a new post
+    function addPost() {
+      const postContent = document.getElementById('postContent').value;
+      if (postContent.trim()) {
+        const postItem = document.createElement('div');
+        postItem.classList.add('post-item');
+        postItem.innerHTML = `
+          <h3>Your Name</h3>
+          <p>${postContent}</p>
+          <div class="post-actions">
+            <button class="btn-like" onclick="likePost(this)">Like (<span class="like-count">0</span>)</button>
+            <button class="btn-comment" onclick="toggleCommentSection(this)">Comment</button>
+          </div>
+          <div class="comment-section" style="display: none;">
+            <input type="text" class="comment-input" placeholder="Write a comment..." onkeypress="addComment(event, this)">
+            <div class="comment-list"></div>
+          </div>
+        `;
+        postList.prepend(postItem);
+        document.getElementById('postContent').value = ''; // Clear input
+      }
+    }
+
+    // Function to handle like button
+    function likePost(button) {
+      const likeCount = button.querySelector('.like-count');
+      likeCount.textContent = parseInt(likeCount.textContent) + 1;
+    }
+
+    // Function to toggle comment section
+    function toggleCommentSection(button) {
+      const commentSection = button.closest('.post-item').querySelector('.comment-section');
+      commentSection.style.display = commentSection.style.display === 'none' ? 'block' : 'none';
+    }
+
+    // Function to add a comment on Enter key press
+    function addComment(event, input) {
+      if (event.key === 'Enter' && input.value.trim()) {
+        const commentText = input.value;
+        const commentList = input.closest('.comment-section').querySelector('.comment-list');
+
+        const commentItem = document.createElement('div');
+        commentItem.classList.add('comment-item');
+        commentItem.textContent = commentText;
+
+        commentList.appendChild(commentItem);
+        input.value = ''; // Clear input
+      }
+    }
+  </script>
+</body>
+</html>

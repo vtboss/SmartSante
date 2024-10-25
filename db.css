@@ -10,17 +10,17 @@ body {
     text-align: center;
   }
   .navbar {
-    display: flex;                /* Use flexbox for layout */
-    justify-content: center;      /* Center items horizontally */
-    align-items: center;          /* Center items vertically */
-    height: 90px;                 /* Set a height for the navbar */
-    background-color: #040051;   /* Optional: background color */
+    display: flex;               
+    justify-content: center;      
+    align-items: center;          
+    height: 90px;                 
+    background-color: #040051;   
   }
   .logo {
-    max-width: 150px;            /* Set a maximum width for the logo */
-    height: auto;                 /* Maintain aspect ratio */
-    display: block;               /* Make the image a block element */
-    margin: 0 auto;              /* Center the logo horizontally */
+    max-width: 150px;            
+    height: auto;                 
+    display: block;               
+    margin: 0 auto;              
   }
   .container {
     max-width: 1140px;
@@ -72,7 +72,7 @@ body {
   }
   
   .vendor-tools {
-    background: url(./Online_Shoping_13.jpg) no-repeat center;
+    background: url(./pics/Online_Shoping_13.jpg) no-repeat center;
     background-size: cover;
   }
   
@@ -88,6 +88,13 @@ body {
     border-radius: 5px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .tool-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
   }
   
   
@@ -108,8 +115,16 @@ body {
     padding: 1rem;
     border-radius: 5px;
     text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
   }
   
+  .feature-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    cursor: pointer;
+  }
+
   /* Footer */
   .footer {
     background-color: #233446;

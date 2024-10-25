@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Contributors</title>
+  <style>
+    body {
+      font-family: 'Oswald', sans-serif;
+      margin: 0;
+      background-color: #f5f5f9;
+      display: flex;
+    }
+
+    /* Sidebar for desktop */
+    .sidebar {
+      width: 15%;
+      background-color: #233446;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      transform: translateX(0);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    /* Sidebar link styling */
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      padding: 0.75rem 1rem;
+      border-radius: 5px;
+      margin: 0.5rem 0;
+      display: block;
+    }
+
+    .sidebar a:hover {
+      background-color: #34495e;
+    }
+
+    /* Main content */
+    .main-content {
+      margin-left: 250px;
+      padding: 2rem;
+      flex: 1;
+    }
+
+    h1 {
+      color: #233446;
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .contributor-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contributor-item {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contributor-item h3 {
+      color: #233446;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    /* Mobile Sidebar */
+    .sidebar-mobile-button {
+      display: none;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      background-color: #233446;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 768px) {
+      .sidebar {
+        transform: translateX(-100%);
+        position: fixed;
+        font-size: smaller;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 1rem;
+      }
+
+      .sidebar-mobile-button {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <button class="sidebar-mobile-button" onclick="toggleSidebar()">☰ Menu</button>
+  <div class="sidebar" id="sidebar">
+    <h2>Community Pages</h2>
+    <a href="community-feed.html">Community Feed</a>
+    <a href="top-contributors.html">Top Contributors</a>
+    <a href="community-guidelines.html">Community Guidelines</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <h1>Top Contributors</h1>
+    <div class="contributor-list">
+      <div class="contributor-item">
+        <h3>Vendor 1</h3>
+        <span>Posts: 25</span>
+      </div>
+      <div class="contributor-item">
+        <h3>Vendor 2</h3>
+        <span>Posts: 20</span>
+      </div>
+      <div class="contributor-item">
+        <h3>Vendor 3</h3>
+        <span>Posts: 15</span>
+      </div>
+      <!-- Add more contributors here -->
+    </div>
+  </div>
+
+  <script>
+    // Toggle sidebar for mobile
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const isVisible = sidebar.style.transform === 'translateX(0px)';
+      sidebar.style.transform = isVisible ? 'translateX(-100%)' : 'translateX(0)';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Community</title>
+  <style>
+    body {
+      font-family: 'Oswald', sans-serif; /* Adjust the main font here */
+      margin: 0;
+      background-color: #f5f5f9;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #233446; /* Adjust main heading color here */
+      font-size: 2rem; /* Adjust main heading size here */
+    }
+
+    .form-container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-size: 1rem; /* Adjust label font size here */
+      color: #233446; /* Adjust label color here */
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    input[type="text"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 5px;
+      border: 1px solid #d9dee3;
+      font-size: 1rem; /* Adjust input font size here */
+      margin-bottom: 1rem;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #696cff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1rem; /* Adjust submit button font size here */
+      cursor: pointer;
+    }
+
+    .btn-submit:hover {
+      background-color: #5f61e6; /* Adjust submit button hover color here */
+    }
+
+    /* Hidden field for "Other" category */
+    .other-category {
+      display: none;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Create Community</h1>
+    <div class="form-container">
+      <!-- Community Creation Form -->
+      <form id="communityForm" method="post">
+        <label for="communityName">Community Name</label>
+        <input type="text" id="communityName" name="communityName" placeholder="Enter community name" required>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="4" placeholder="Describe your community" required></textarea>
+
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="Food">Food</option>
+          <option value="Crafts">Crafts</option>
+          <option value="Services">Services</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <!-- Additional fields for "Other" category -->
+        <div id="otherCategoryFields" class="other-category">
+          <label for="otherCategoryName">Other Category Name</label>
+          <input type="text" id="otherCategoryName" name="otherCategoryName" placeholder="Enter other category name">
+          
+          <label for="otherCategoryDescription">Other Category Description</label>
+          <textarea id="otherCategoryDescription" name="otherCategoryDescription" rows="3" placeholder="Describe your custom category"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Create Community</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const categoryDropdown = document.getElementById('category');
+    const otherCategoryFields = document.getElementById('otherCategoryFields');
+    const communityForm = document.getElementById('communityForm');
+
+    // Show/hide "Other" category fields based on selection
+    categoryDropdown.addEventListener('change', () => {
+      if (categoryDropdown.value === 'Other') {
+        otherCategoryFields.style.display = 'block';
+      } else {
+        otherCategoryFields.style.display = 'none';
+      }
+    });
+
+    // Form submission handler
+    communityForm.addEventListener('submit', function (e) {
+      if (categoryDropdown.value === 'Other') {
+        e.preventDefault();
+        alert('We will update you through email when your custom category is created.');
+      }
+    });
+  </script>
+</body>
+</html>
