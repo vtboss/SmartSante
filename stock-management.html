@@ -10,12 +10,19 @@
       margin: 0;
       background-color: #f5f5f9;
     }
-    .header {
-      background-color: #696cff;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-    }
+    .navbar {
+    display: flex;               
+    justify-content: center;      
+    align-items: center;          
+    height: 90px;                 
+    background-color: #040051;   
+  }
+  .logo {
+    max-width: 150px;            
+    height: auto;                 
+    display: block;               
+    margin: 0 auto;              
+  }
     .container {
       max-width: 1140px;
       margin: 0 auto;
@@ -173,8 +180,8 @@
   </style>
 </head>
 <body>
-  <header class="header">
-    <h1>Stock Management</h1>
+  <header class="navbar">
+    <img class="logo" src="./pics/logo.jpeg">
   </header>
 
   <div class="container">

@@ -9,6 +9,7 @@
       font-family: 'Oswald', sans-serif;
       background-color: #f5f5f9;
       margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -38,8 +39,7 @@
     input[type="text"],
     input[type="email"],
     input[type="password"],
-    input[type="number"],
-    select {
+    input[type="file"] {
       padding: 0.75rem;
       border-radius: 5px;
       border: 1px solid #d9dee3;
@@ -75,20 +75,8 @@
       <input type="email" name="Email" placeholder="Email" required>
       <input type="password" id="Password" name="Password" placeholder="Password" required>
       <input type="password" id="CPassword" name="CPassword" placeholder="Confirm Password" required>
-      <input type="number" name="Phone" placeholder="Phone Number" required>
-
-      <!-- Aadhaar Number -->
-      <input type="number" name="Aadhaar" placeholder="Aadhaar Number" required>
-
-      <!-- Category Dropdown -->
-      <select name="Category" required>
-        <option value="">Select Category</option>
-        <option value="Retail">Retail</option>
-        <option value="Food">Food</option>
-        <option value="Service">Service</option>
-      </select>
-      <label for="aadhaar">Upload Aadhaar Card (image format only)</label>
-      <input type="file" name="aadhaar" accept="image/*" required labe>
+      <input type="text" name="Phone" placeholder="Phone Number" required>
+      <input type="file" name="aadhaar" accept="image/*" required>
       <input type="submit" value="Submit">
       <span id="error-msg">Passwords do not match</span>
     </form>
