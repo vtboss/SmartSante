@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vendor Dashboard</title>
+  <style>
+    body {
+      font-family: 'Oswald', sans-serif;
+      margin: 0;
+      background-color: #f5f5f9;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    h1 {
+      text-align: center;
+      color: #233446;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .dashboard-section {
+      background-color: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .section-header {
+      font-size: 1.2rem;
+      color: #233446;
+      margin-bottom: 1rem;
+    }
+
+    .financial-summary,
+    .stock-overview,
+    .community-updates {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .summary-item,
+    .stock-item,
+    .update-item {
+      padding: 1rem;
+      border-radius: 5px;
+      background-color: #f5f5f9;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .summary-item {
+      font-size: 1rem;
+      color: #233446;
+    }
+
+    .stock-item h3,
+    .update-item h3 {
+      margin: 0;
+      color: #233446;
+    }
+
+    .summary-value {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #696cff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Vendor Dashboard</h1>
+
+    <!-- Financial Summary Section -->
+    <div class="dashboard-section financial-summary">
+      <h2 class="section-header">Financial Summary</h2>
+      <div class="summary-item">
+        <span>Total Income</span>
+        <span class="summary-value">₹50,000</span>
+      </div>
+      <div class="summary-item">
+        <span>Total Expenses</span>
+        <span class="summary-value">₹20,000</span>
+      </div>
+      <div class="summary-item">
+        <span>Net Balance</span>
+        <span class="summary-value">₹30,000</span>
+      </div>
+    </div>
+
+    <!-- Stock Overview Section -->
+    <div class="dashboard-section stock-overview">
+      <h2 class="section-header">Stock Overview</h2>
+      <div class="stock-item">
+        <h3>Item A</h3>
+        <span>Stock: 25 units</span>
+      </div>
+      <div class="stock-item">
+        <h3>Item B</h3>
+        <span>Stock: 10 units</span>
+      </div>
+      <div class="stock-item">
+        <h3>Item C</h3>
+        <span>Stock: 5 units (Low)</span>
+      </div>
+    </div>
+
+    <!-- Community Updates Section -->
+    <div class="dashboard-section community-updates">
+      <h2 class="section-header">Community Updates</h2>
+      <div class="update-item">
+        <h3>Vendor Network</h3>
+        <span>New message in Community Feed</span>
+      </div>
+      <div class="update-item">
+        <h3>Events Group</h3>
+        <span>New event: Community Gathering</span>
+      </div>
+      <div class="update-item">
+        <h3>Market News</h3>
+        <span>Post: Seasonal Demand Trends</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
