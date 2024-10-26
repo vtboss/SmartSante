@@ -1,4 +1,5 @@
 <?php
+session_start(); // Start session to use session variables
 $error_message = ""; 
 if (isset($_POST["submit"])) {
     $server = "localhost";
@@ -14,53 +15,55 @@ if (isset($_POST["submit"])) {
         die("Connection failed: " . mysqli_connect_error());
     }
 
+    // Get the vendor's RID from the session
+    $RID = $_SESSION['RID']; // Assuming RID is stored in the session
+
     // Get form inputs
     $Item_name = $_POST['Item_name'];
     $Quantity = $_POST['Quantity'];
 
-// Retrieve specific columns from the database
-$query = "SELECT `RID`,`name` FROM `vendors_ca_db` WHERE id = 1"; // Adjust condition as needed
-$result = $con->query($query);
+    // Retrieve the vendor's name based on the RID
+    $query = "SELECT `name` FROM `vendors_ca_db` WHERE `RID` = ?"; // Adjust condition as needed
+    $stmt = $con->prepare($query);
+    $stmt->bind_param("i", $RID); // Use "i" for integer binding
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $RID = $row['RID'];
-    $NAME = $row['name'];
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $NAME = $row['name'];
 
+        // Prepare SQL statement to insert data
+        $sql = "INSERT INTO `stock_db` (`RID`, `name`, `Item_name`, `Quantity`) VALUES (?, ?, ?, ?)";
 
-    // Prepare SQL statement to insert data
-            $sql = "INSERT INTO `stock_db` (`RID`, `name`, `Item_name`, `Quantity`) VALUES (?,?,?,?)";
+        // Prepare and bind
+        $stmt = $con->prepare($sql);
+        if (!$stmt) {
+            die("Prepare failed: " . htmlspecialchars($con->error));
+        }
 
-            
-            // Prepare and bind
-            $stmt = $con->prepare($sql);
-            if (!$stmt) {
-                die("Prepare failed: " . htmlspecialchars($con->error));
-            }
+        // Bind parameters
+        $stmt->bind_param("isss", $RID, $NAME, $Item_name, $Quantity);
 
+        // Execute statement
+        if ($stmt->execute()) {
+            $new_id = $stmt->insert_id; // Get the ID of the last inserted record
+            echo "Data uploaded successfully. New record ID is: " . $new_id;
+            header("Location:/SmartSante-main/db.html"); 
+            exit; // Ensure no further code is executed after redirection
+        } else {
+            $error_message = "Error: " . $stmt->error; // Store error message
+        }
 
-            // Bind parameters (note that aadhaar_image is included here)
-            $stmt->bind_param("ssss",$RID,$NAME,  $Item_name, $Quantity);
-
-            // Execute statement
-            if ($stmt->execute()) {
-                $new_id = $stmt->insert_id; // Get the ID of the last inserted record
-                echo "data uploaded successfully. New record ID is: " . $new_id;
-                header("Location:/SmartSante-main/db.html"); 
-            } else {
-                $error_message = "Error: " . $stmt->error; // Store error message
-            }
-
-            // Close statement
-            $stmt->close();
-
+        // Close statement
+        $stmt->close();
+    }
 
     // Close connection
     $con->close();
-}}
+}
 ?>
 <!-- Display Error Message -->
 <?php if (!empty($error_message)): ?>
     <div style="color: red;"><?php echo $error_message; ?></div>
 <?php endif; ?>
-
