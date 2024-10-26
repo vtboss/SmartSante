@@ -15,17 +15,26 @@ if (isset($_POST["submit"])) {
     }
 
     // Get form inputs
-    $firstname = $_POST['Firstname'];
-    $email = $_POST['Email'];
-    $Password = $_POST['Password'];
-    $CPassword = $_POST['CPassword'];
-    $Phone_Number = $_POST['Phone'];
+    $income = $_POST['income'];
+    $Expense = $_POST['Expense'];
+    $Amount = $_POST['Amount'];
+    $Date = $_POST['Date'];
 
-    
 
-            // Prepare SQL statement to insert data
-            $sql = "INSERT INTO `user_ca_db` (`name`, `email`, `password`, `phone_number`) VALUES (?, ?, ?, ?)";
+// Retrieve specific columns from the database
+$query = "SELECT `RID`,`name` FROM `vendors_ca_db` WHERE id = 1"; // Adjust condition as needed
+$result = $con->query($query);
 
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $RID = $row['RID'];
+    $NAME = $row['name'];
+
+
+    // Prepare SQL statement to insert data
+            $sql = "INSERT INTO `acc_db` (`RID`, `name`, `Income`, `Expense`, `Amount`, `Date`) VALUES (?,?,?,?,?,?)";
+
+            
             // Prepare and bind
             $stmt = $con->prepare($sql);
             if (!$stmt) {
@@ -36,13 +45,13 @@ if (isset($_POST["submit"])) {
             $hashed_password = password_hash($Password, PASSWORD_DEFAULT);
 
             // Bind parameters (note that aadhaar_image is included here)
-            $stmt->bind_param("ssss", $firstname, $email, $hashed_password, $Phone_Number);
+            $stmt->bind_param("ssssss",$RID,$NAME,  $income, $Expense, $Amount, $Date);
 
             // Execute statement
             if ($stmt->execute()) {
                 $new_id = $stmt->insert_id; // Get the ID of the last inserted record
-                #echo "Image and data uploaded successfully. New record ID is: " . $new_id;
-                header("Location:/SmartSante-main/login/login - user.html"); 
+                echo "data uploaded successfully. New record ID is: " . $new_id;
+                header("Location:/SmartSante-main/db.html"); 
             } else {
                 $error_message = "Error: " . $stmt->error; // Store error message
             }
@@ -53,29 +62,10 @@ if (isset($_POST["submit"])) {
 
     // Close connection
     $con->close();
-}
+}}
 ?>
 <!-- Display Error Message -->
 <?php if (!empty($error_message)): ?>
     <div style="color: red;"><?php echo $error_message; ?></div>
 <?php endif; ?>
 
-<script>
-    document.getElementById("myForm").addEventListener("submit", function(event) {
-    // Get the password and confirm password values
-    var password = document.getElementById("Password").value;
-    var confirmPassword = document.getElementById("CPassword").value;
-    
-    // Check if passwords match
-    if (password !== confirmPassword) {
-        // Prevent form submission
-        event.preventDefault();
-        
-        // Display error message
-        document.getElementById("error-msg").style.display = "inline";
-    } else {
-        // Hide error message if passwords match
-        document.getElementById("error-msg").style.display = "none";
-    }
-});
-</script>

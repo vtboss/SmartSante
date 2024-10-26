@@ -21,8 +21,15 @@ if (isset($_POST["submit"])) {
     $CPassword = $_POST['CPassword'];
     $Phone_Number = $_POST['Phone'];
     $Category= $_POST['Category'];
+    $Aadhaar_no=$_POST['Aadhaar_no'];
 
-    $random_number = 'RE' . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT);
+    if($Category=="Food"){
+    $random_number = 'FO' . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT);}
+    if($Category=="Retail"){
+    $random_number = 'RE' . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT);}
+    if($Category=="Service"){
+    $random_number = 'SE' . str_pad(rand(0, 99999), 5, '0', STR_PAD_LEFT);}
+    
 
 
         if (isset($_FILES['aadhaar']) && $_FILES['aadhaar']['error'] === UPLOAD_ERR_OK) {
@@ -30,7 +37,7 @@ if (isset($_POST["submit"])) {
             $aadhaar_image = file_get_contents($_FILES['aadhaar']['tmp_name']);
 
             // Prepare SQL statement to insert data
-            $sql = "INSERT INTO `vendors_ca_db` (`RID`,`Category`,`name`, `email`, `password`, `phone_number`, `aadhaar`) VALUES (?, ?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO `vendors_ca_db` (`RID`,`Category`,`name`, `email`, `password`, `phone_number`, `aadhaar`,`Aadhaar_no`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             // Prepare and bind
             $stmt = $con->prepare($sql);
@@ -42,13 +49,13 @@ if (isset($_POST["submit"])) {
             $hashed_password = password_hash($Password, PASSWORD_DEFAULT);
 
             // Bind parameters (note that aadhaar_image is included here)
-            $stmt->bind_param("sssssss",$random_number,$Category, $firstname, $email, $hashed_password, $Phone_Number, $aadhaar_image);
+            $stmt->bind_param("sssssbsi",$random_number,$Category, $firstname, $email, $hashed_password, $Phone_Number, $aadhaar_image,$Aadhaar_no);
 
             // Execute statement
             if ($stmt->execute()) {
                 $new_id = $stmt->insert_id; // Get the ID of the last inserted record
                 #echo "data uploaded successfully. New record ID is: " . $new_id;
-                header("Location:/SmartSante-main/db.html"); 
+                header("Location:/SmartSante-main/login/login - vendor.html"); 
             } else {
                 $error_message = "Error: " . $stmt->error; // Store error message
             }
@@ -60,10 +67,14 @@ if (isset($_POST["submit"])) {
             se try again.";
         }
 
+    
+
+    
 
     // Close connection
     $con->close();
 }
+
 ?>
 <!-- Display Error Message -->
 <?php if (!empty($error_message)): ?>
@@ -89,5 +100,4 @@ if (isset($_POST["submit"])) {
         document.getElementById("error-msg").style.display = "none";
     }
 });
-
 </script>
