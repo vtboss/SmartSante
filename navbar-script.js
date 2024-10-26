@@ -6,18 +6,30 @@ document.addEventListener('DOMContentLoaded', function() {
     // Mobile menu toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navList = document.querySelector('.nav-list');
+    let isMenuOpen = false;
 
     if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', function() {
+        mobileMenuBtn.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent event from bubbling up
+            isMenuOpen = !isMenuOpen;
             navList.classList.toggle('active');
+            // Update button text based on menu state
+            mobileMenuBtn.textContent = isMenuOpen ? '×' : '☰';
         });
     }
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(event) {
-        if (!event.target.closest('.navbar')) {
+        if (isMenuOpen && !event.target.closest('.nav-list')) {
             navList.classList.remove('active');
+            mobileMenuBtn.textContent = '☰';
+            isMenuOpen = false;
         }
+    });
+
+    // Prevent menu from closing when clicking inside it
+    navList.addEventListener('click', function(event) {
+        event.stopPropagation();
     });
 
     // Highlight current page in navigation

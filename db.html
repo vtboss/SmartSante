@@ -1,66 +1,339 @@
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-  <title>Smartಸಂತೆ</title>
-  <link rel="icon" type="image/png" href="./pics/2_new.png">
-  <link rel="stylesheet" href="db.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <title>Smartಸಂತೆ</title>
+    <link rel="icon" type="image/png" href="/api/placeholder/32/32">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* Core Styling */
+        :root {
+            --primary-color: #696cff;
+            --secondary-color: #03c3ec;
+            --dark-blue: #040051;
+            --text-dark: #233446;
+            --white: #ffffff;
+            --orange: #ff9f43;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        h1, h2 {
+            font-family: 'Oswald', sans-serif;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--dark-blue);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            max-width: 150px;
+            height: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 90px;
+            color: var(--white);
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero h2 {
+            font-size: 4rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            margin: 0.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: var(--white);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+
+        /* Cards Section */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section h2 {
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(0);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer p {
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="layout-wrapper">
-    <div class="layout-container">
-      <!-- Navbar -->
-      <header class="navbar">
-        <img class="logo" src="./pics/logo.jpeg">
-      </header>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <img class="logo" src="/api/placeholder/150/50" alt="Smartಸಂತೆ Logo">
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#vendor-tools">Vendor Tools</a>
+            <a href="#user-features">User Features</a>
+        </div>
+    </nav>
 
-      <!-- Main content -->
-      <main class="main-content">
-        <section class="section hero">
-          <div class="container">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
             <h2>Empowering Street Vendors in Mysore</h2>
-            <p>Providing tools to streamline operations and boost engagement with customers.</p>
-            <a href="./login/loginss.html" class="btn-primary">Login</a>
-            <a href="./login/signinss.html" class="btn-secondary">Sign In</a>
-          </div>
-        </section>
+            <p>Providing innovative tools to streamline operations and boost engagement with customers.</p>
+            <a href="./login/loginss.html" class="btn btn-primary">Login</a>
+            <a href="./login/signinss.html" class="btn btn-secondary">Sign Up</a>
+        </div>
+    </section>
 
-        <!-- Vendor Tools Section -->
-        <section id="vendor-tools" class="section vendor-tools">
-          <h2 class="vendorhead">Vendor Tools</h2>
-          <div class="tool-grid">
-            <a href="./accounting.html"><div class="tool-card acc"><p>Accounting</p></div></a>
-            <a href="./stock-management.html"><div class="tool-card"><p>Stock Management</p></div></a>
-            <a href="./gov.html"><div class="tool-card"><p>Government Schemes</p></div></a>
-            <a href="./commuinty/community-feed.html"><div class="tool-card"><p>Community Section</p></div></a>
-            <a href="./tutorials.html"><div class="tool-card"><p>Tutorials</p></div></a>
-            <a href="./faq.html"><div class="tool-card"><p>FAQ</p></div></a>
-          </div>
-        </section>
+    <!-- Vendor Tools Section -->
+    <section id="vendor-tools" class="section">
+        <h2>Vendor Tools</h2>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-calculator"></i>
+                <h3>Accounting</h3>
+                <p>Manage your finances efficiently with our easy-to-use accounting tools.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-box"></i>
+                <h3>Stock Management</h3>
+                <p>Keep track of your inventory in real-time with our stock management system.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-landmark"></i>
+                <h3>Government Schemes</h3>
+                <p>Stay updated with the latest government schemes and benefits.</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- User Features Section -->
-        <section id="user-features" class="section user-features">
-          <h2 class="userhead">User Features</h2>
-          <div class="feature-grid">
-            <a href="./map.html"><div class="feature-card"><p>Map-Based Vendor Locations</p></div></a>
-            <a href="./search-filter.html"><div class="feature-card"><p>Search & Filter</p></div></a>
-            <a href="./vendor-updates.html"><div class="feature-card"><p>Vendor Updates</p></div></a>
-          </div>
-        </section>
-      </main>
+    <!-- User Features Section -->
+    <section id="user-features" class="section">
+        <h2>User Features</h2>
+        <div class="card-grid">
+            <div class="card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Map-Based Location</h3>
+                <p>Find vendors near you with our interactive map feature.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-search"></i>
+                <h3>Search & Filter</h3>
+                <p>Easily find what you're looking for with advanced search options.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-bell"></i>
+                <h3>Vendor Updates</h3>
+                <p>Get real-time updates from your favorite vendors.</p>
+            </div>
+        </div>
+    </section>
 
-      <!-- Footer -->
-      <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer">
         <p>&copy; 2024 SmartSante. All rights reserved.</p>
-      </footer>
-    </div>
-  </div>
-  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-<script src="https://files.bpcontent.cloud/2024/10/22/15/20241022152724-151KRYRS.js"></script>
-  
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://kit.fontawesome.com/your-kit-code.js"></script>
+    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2024/10/22/15/20241022152724-151KRYRS.js"></script>
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Animate cards on scroll
+        const cards = document.querySelectorAll('.card');
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>

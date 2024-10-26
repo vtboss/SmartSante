@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vendor Management System</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="navbar-styles.css">
   <style>
     body {
       margin: 0;
@@ -187,10 +188,17 @@
   </style>
 </head>
 <body>
-  <header class="navbar">
-    <img class="logo" src="./pics/logo.jpeg">
-  </header>
-
+<div class="page-wrapper">
+  <!-- Navbar -->
+    <nav class="navbar">
+        <button class="mobile-menu-btn">☰</button>
+        <ul class="nav-list">
+            <li><a href="./db.html" class="nav-link">Home</a></li>
+            <li><a href="./dashboard.html" class="nav-link">Dashboard</a></li>
+            <li><a href="./commuinty/community-feed.html" class="nav-link">Community</a></li>
+            <li><a href="./stock-management.html" class="nav-link">Stock</a></li>
+        </ul>
+    </nav>
   <section id="map-section" class="card">
     <h2 class="section-title">
       <i class="fas fa-map-marked-alt section-icon"></i>
@@ -314,7 +322,7 @@
       </div>
     </div>
   </section>
-
+</div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const mapFrame = document.getElementById('map-frame');
@@ -348,5 +356,6 @@
       });
     });
   </script>
+  <script src="navbar-script.js"></script>
 </body>
 </html>

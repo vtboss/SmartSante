@@ -52,7 +52,7 @@ body {
   
   /* Hero Section */
   .hero {
-    background: url(../hero4.jpeg) no-repeat center;
+    background: url(../hero1.jpeg) center fixed;
     color: white;
     padding: 2rem 1rem;
     text-align: center;
