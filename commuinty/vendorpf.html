@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vendor Profile</title>
+  <link rel="stylesheet" href="../navbar-styles.css">
   <style>
     body {
       font-family: 'Oswald', sans-serif;
@@ -144,13 +145,27 @@
   </style>
 </head>
 <body>
-    <!-- Sidebar -->
+  <!-- Navbar -->
+  <nav class="navbar">
+    <button class="mobile-menu-btn">☰</button>
+    <ul class="nav-list">
+        <li><a href="./db.html" class="nav-link">Home</a></li>
+        <li><a href="./dashboard.html" class="nav-link">Dashboard</a></li>
+        <li><a href="./commuinty/community-feed.html" class="nav-link">Community</a></li>
+        <li><a href="./mapintegration.html" class="nav-link">Map</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sidebar -->
   <button class="sidebar-mobile-button" onclick="toggleSidebar()">☰ Menu</button>
   <div class="sidebar" id="sidebar">
-      <h2>Community Pages</h2>
-      <a href="community-directory.html">All Communities</a>
-      <a href="community-feed.html">Community Feed</a>
-      <a href="top-contributors.html">Top Contributors</a>
+    <h2>Smartಸಂತೆ</h2>
+    <a href="../db.html">Home</a>
+    <a href="community-feed">Community Feed</a>
+    <a href="vendorpf.html">Vendor Profile</a>
+    <a href="community-directory.html">All Communities</a>
+    <a href="community-feed.html">Community Feed</a>
+    <a href="top-contributors.html">Top Contributors</a>
   </div>
   <div class="container">
     <!-- Profile Header -->
@@ -163,6 +178,7 @@
     <div class="profile-actions">
       <button class="btn btn-create" onclick="window.location.href='create-community.html'">Create Community</button>
       <button class="btn btn-join" onclick="window.location.href='community-directory.html'">Join Community</button>
+      <button class="btn btn-create" onclick="window.location.href='dashboard.html'">Dashboard</button>
     </div>
 
     <!-- Community List -->
