@@ -38,9 +38,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (password_verify($input_password, $hashed_password)) {
             // Password is correct, set session variables
             $_SESSION['username'] = $input_username;
-            echo "Login successful! Welcome, " . $input_username;
+            $_SESSION['RID'] = $user['RID'];  // Store the vendor's RID in session
+            
             // Redirect to a welcome page or dashboard
             header("Location:/SmartSante-main/db.html");
+            exit();
         } else {
             // Incorrect password
             echo "Invalid username or password";
@@ -54,4 +56,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 $conn->close();
-
+?>
