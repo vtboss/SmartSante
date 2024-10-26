@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vendor Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('./hero3.jpeg') center no-repeat fixed;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4a90e2, #2c3e50);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .vendor-info {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .vendor-name {
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .vendor-username {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: block;
+            object-fit: cover;
+            border: 4px solid #4a90e2;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            background-color: #e0e0e0;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .description {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            line-height: 1.6;
+        }
+
+        .shop-photo {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #e0e0e0;
+        }
+
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @media (max-width: 600px) {
+            .vendor-name {
+                font-size: 2rem;
+            }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .shop-photo {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Vendor Profile</h1>
+    </header>
+
+    <div class="profile-container">
+        <div class="vendor-info">
+            <h2 class="vendor-name">Mysuru Crafts</h2>
+            <p class="vendor-username">@mysuruartisan</p>
+        </div>
+
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNDAgMjQwIj48ZGVmcz48c3R5bGU+LmNscy0xe2ZpbGw6IzRhOTBlMjt9LmNscy0ye2ZpbGw6I2ZmZjt9PC9zdHlsZT48L2RlZnM+PGNpcmNsZSBjbGFzcz0iY2xzLTEiIGN4PSIxMjAiIGN5PSIxMjAiIHI9IjEyMCIvPjxjaXJjbGUgY2xhc3M9ImNscy0yIiBjeD0iMTIwIiBjeT0iOTAiIHI9IjQwIi8+PHBhdGggY2xhc3M9ImNscy0yIiBkPSJNMTIwLDI0MGMyNi41MSwwLDUyLjExLTguNjEsNzMuMTctMjQuNDhBOTkuOTMsOTkuOTMsMCwwLDAsMTIwLDE0MGE5OS45Myw5OS45MywwLDAsMC03My4xNyw3NS41MkE5OS42Myw5OS42MywwLDAsMCwxMjAsMjQwWiIvPjwvc3ZnPg==" alt="Default Profile Picture" class="profile-photo" id="profilePhoto">
+
+        <div class="description">
+            <p>Welcome to Mysuru Crafts! We are a family-owned business specializing in traditional Mysuru silk sarees, handicrafts, and authentic local artworks. With over 20 years of experience, we take pride in preserving and promoting the rich cultural heritage of Mysuru through our carefully curated collection. Visit our shop to experience the finest craftsmanship and warm hospitality that our city is known for.</p>
+        </div>
+
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4MDAgMzAwIj48cmVjdCB3aWR0aD0iODAwIiBoZWlnaHQ9IjMwMCIgZmlsbD0iI2UwZTBlMCIvPjx0ZXh0IHg9IjQwMCIgeT0iMTUwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM2NjY2NjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGFsaWdubWVudC1iYXNlbGluZT0ibWlkZGxlIj5TaG9wIFBob3RvPC90ZXh0Pjwvc3ZnPg==" alt="Default Shop Photo" class="shop-photo" id="shopPhoto">
+
+        <div class="map-container">
+            <iframe id="mapFrame" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d70571.40205151471!2d76.59449009116713!3d12.310726523421305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3baf70381d572ef9%3A0x2b89ece8c0f8396d!2sMysuru%2C%20Karnataka!5e1!3m2!1sen!2sin!4v1729917897577!5m2!1sen!2sin" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Function to update profile picture
+        function updateProfilePicture(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profilePhoto').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Function to update shop photo
+        function updateShopPhoto(input) {
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('shopPhoto').src = e.target.result;
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // Add event listener to the iframe to handle clicks on markers/places
+        document.getElementById('mapFrame').addEventListener('load', function() {
+            this.contentWindow.addEventListener('click', function(e) {
+                // Check if the clicked element is a marker or place card
+                if (e.target.matches('.place-card, .marker')) {
+                    const currentSrc = document.getElementById('mapFrame').src;
+                    window.open(currentSrc.replace('embed', 'place'), '_blank');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
