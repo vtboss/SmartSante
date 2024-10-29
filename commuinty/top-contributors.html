@@ -4,23 +4,85 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Top Contributors</title>
+  <link rel="stylesheet" href="../navbar-styles.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Poppins:wght@400;600&display=swap">
   <style>
-    body {
-      font-family: 'Oswald', sans-serif;
+    /* Reset styles */
+    * {
       margin: 0;
-      background-color: #f5f5f9;
-      display: flex;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    /* Sidebar for desktop */
-    .sidebar {
-      width: 15%;
-      background-color: #233446;
-      color: white;
+    /* Global styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f5f9;
       display: flex;
       flex-direction: column;
+      background-image: url('../pics/hero6.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: repeat;
+      position: relative;
+      z-index: 1;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(245, 245, 249, 0.9);
+      z-index: -1;
+    }
+
+    /* Navbar styles */
+    .navbar {
+      background-color: #0047ab;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      height: 70px;
+    }
+
+    .navbar .nav-list {
+      list-style-type: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    .navbar .nav-link {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .navbar .nav-link:hover {
+      color: #03c3ec;
+    }
+
+    .navbar .mobile-menu-btn {
+      display: none;
+      background-color: transparent;
+      color: white;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    /* Sidebar styles */
+    .sidebar {
+      background-color: #0047ab;
+      color: white;
       padding: 2rem;
-      height: 100vh;
+      width: 250px;
+      height: 100%;
       position: fixed;
       left: 0;
       top: 0;
@@ -28,99 +90,165 @@
       transition: transform 0.3s ease-in-out;
     }
 
-    /* Sidebar link styling */
     .sidebar a {
       color: white;
       text-decoration: none;
-      padding: 0.75rem 1rem;
-      border-radius: 5px;
-      margin: 0.5rem 0;
       display: block;
+      padding: 0.75rem 0;
+      font-weight: 600;
+      transition: color 0.3s;
     }
 
     .sidebar a:hover {
-      background-color: #34495e;
+      color: #03c3ec;
     }
 
-    /* Main content */
+    .sidebar-toggle-btn {
+      display: none;
+      background-color: #0047ab;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 999;
+    }
+
+    /* Main content styles */
     .main-content {
       margin-left: 250px;
-      padding: 2rem;
+      padding: 3rem;
       flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    h1 {
+    .main-content h1 {
       color: #233446;
+      font-family: 'Oswald', sans-serif;
+      font-size: 3rem;
+      margin-bottom: 2rem;
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
     }
 
     .contributor-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
     }
 
     .contributor-item {
       background-color: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .contributor-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .contributor-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('../pics/2_new.png');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      z-index: -1;
     }
 
     .contributor-item h3 {
-      color: #233446;
-      font-size: 1.2rem;
-      margin: 0;
+      color: #0047ab;
+      font-family: 'Oswald', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
     }
 
-    /* Mobile Sidebar */
-    .sidebar-mobile-button {
-      display: none;
-      position: fixed;
-      top: 1rem;
-      left: 1rem;
-      background-color: #233446;
+    .contributor-item p {
+      color: #666;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .contributor-item .post-count {
+      background-color: #03c3ec;
       color: white;
       padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      z-index: 1000;
+      border-radius: 20px;
+      font-weight: 600;
     }
 
-    /* Adjustments for smaller screens */
+    /* Responsive styles */
     @media (max-width: 768px) {
       .sidebar {
         transform: translateX(-100%);
-        position: fixed;
+        z-index: 1000;
       }
 
       .main-content {
         margin-left: 0;
-        padding: 1rem;
-        font-size: smaller;
+        padding: 2rem 1rem;
       }
 
-      .sidebar-mobile-button {
+      .navbar .nav-list {
+        display: none;
+        background-color: #0047ab;
+        z-index: 1000;
+      }
+
+      .navbar .mobile-menu-btn {
+        display: block;
+      }
+
+      .sidebar-toggle-btn {
         display: block;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="../db.html" class="nav-link">Home</a>
+    <ul class="nav-list">
+      <li><a href="../db.html" class="nav-link">Home</a></li>
+      <li><a href="../gov.html" class="nav-link">Government Schmems</a></li>
+      <li><a href="./commuinty/community-feed.html" class="nav-link">Community</a></li>
+      <li><a href="../mapintegration.html" class="nav-link">Map</a></li>
+    </ul>
+    <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+  </nav>
+
   <!-- Sidebar -->
-  <button class="sidebar-mobile-button" onclick="toggleSidebar()">☰ Menu</button>
+  <button class="sidebar-toggle-btn" onclick="toggleSidebar()">☰</button>
   <div class="sidebar" id="sidebar">
-    <h2>Community Pages</h2>
-    <a href="community-directory.html">All Communities</a>
-    <a href="community-feed.html">Community Feed</a>
+    <h2>Smartಸಂತೆ</h2>
+    <a href="../db.html">Home</a>
+    <a href="../commuinty/community-feed.html">Community Feed</a>
+    <a href="../commuinty/vendorpf.html">Vendor Profile</a>
+    <a href="../commuinty/community-directory.html">All Communities</a>
+    <a href="../commuinty/community-feed.html">Community Feed</a>
     <a href="top-contributors.html">Top Contributors</a>
-    
   </div>
 
   <!-- Main Content -->
@@ -129,17 +257,34 @@
     <div class="contributor-list">
       <div class="contributor-item">
         <h3>Vendor 1</h3>
-        <span>Posts: 25</span>
+        <p>Mysore, India</p>
+        <div class="post-count">25 Posts</div>
       </div>
       <div class="contributor-item">
         <h3>Vendor 2</h3>
-        <span>Posts: 20</span>
+        <p>Mysore, India</p>
+        <div class="post-count">20 Posts</div>
       </div>
       <div class="contributor-item">
         <h3>Vendor 3</h3>
-        <span>Posts: 15</span>
+        <p>Mysore, India</p>
+        <div class="post-count">15 Posts</div>
       </div>
-      <!-- Add more contributors here -->
+      <div class="contributor-item">
+        <h3>Vendor 4</h3>
+        <p>Mysore, India</p>
+        <div class="post-count">12 Posts</div>
+      </div>
+      <div class="contributor-item">
+        <h3>Vendor 5</h3>
+        <p>Mysore, India</p>
+        <div class="post-count">10 Posts</div>
+      </div>
+      <div class="contributor-item">
+        <h3>Vendor 6</h3>
+        <p>Mysore, India</p>
+        <div class="post-count">8 Posts</div>
+      </div>
     </div>
   </div>
 
@@ -147,9 +292,13 @@
     // Toggle sidebar for mobile
     function toggleSidebar() {
       const sidebar = document.getElementById('sidebar');
-      const isVisible = sidebar.style.transform === 'translateX(0px)';
-      sidebar.style.transform = isVisible ? 'translateX(-100%)' : 'translateX(0)';
+      sidebar.style.transform = sidebar.style.transform === 'translateX(-100%)' ? 'translateX(0)' : 'translateX(-100%)';
     }
+    function toggleMenu() {
+      const navList = document.querySelector('.nav-list');
+      navList.style.display = navList.style.display === 'none' ? 'flex' : 'none';
+    }
+
   </script>
 </body>
 </html>
